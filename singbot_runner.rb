@@ -2,6 +2,14 @@ class BotRunner
 	require_relative "singbot"
 	require "socket"
 
+attr_accessor :answer, :input
+
+def guess_artist_answer
+	string_array_orig = input.partition(":")
+	string_array_new = string_array_orig[2].partition(":")
+	@answer = string_array_new[2]
+end
+
 	server = "chat.freenode.net"   #this tells us where the tcpsocket is connected to
 	port = "6667"
 	nick = "SingBot"
@@ -18,18 +26,25 @@ class BotRunner
 	irc_server.puts "PRIVMSG #{channel} :Hello, is it me you're looking for?"   #automatically outputs the greeting "Hello from IRB Bot" upon start up
 
 	until irc_server.eof? do
-	  msg = irc_server.gets
+	  input = irc_server.gets
 	  puts 
-	  puts msg    #this puts msg command outputs to terminals
-	  break if msg.include?("exit me") #to exit
+	  puts input    #this puts input command outputs to terminals
+	  break if input.include?("exit me") #to exit
 	  puts 
 
-	  if msg.include?("PRIVMSG #{channel} :singbot sing")
+	  if input.include?("PRIVMSG #{channel} :singbot sing")
 	  	irc_server.puts "PRIVMSG #{channel} :#{Singbot.new.sing}"
 	  end
 
-
+	  if input.include?("PRIVMSG #{channel} :guess artist")
+	  	irc_server.puts "PRIVMSG #{channel} :#{Singbot.new.sing}"
+	  		if input.include?("PRIVMSG #{channel} :#{Singbot.new.guess_artist}")
+	  			irc_server.puts "PRIVMSG #{channel} :Dayum gurllll! You're an artist-guessing-master!!"
+				else
+					irc_server.puts "PRIVMSG #{channel} :Yikes, you suck. Awkward Turtle ..."
+				end
+		end
 	end
-
-
 end
+
+

@@ -4,7 +4,9 @@ class Singbot
 		@songHash = {
 		:b44 => "if you get down on me i'll get down on you",
 		:bsb => "i dont care, who you are, where you're from, don't care what you did, as long as you love me",
-		:nsync => "you're tearing up my heart when i'm with you, but when we are apart i feel it too"
+		:nsync => "you're tearing up my heart when i'm with you, but when we are apart i feel it too",
+		:britney => "oh baby baby, how was i supposed to know",
+		:christina => "i'm a genie in a bottle baby, come, come, come on and let me out"
 		}
 		
 		@key_array = []
@@ -19,16 +21,14 @@ class Singbot
 	end
 
 	def guess_artist
-		key_choice = @key_array.sample.to_sym 
-		puts @songHash[key_choice]
-		puts "guess artist now"
-		guessed_artist = gets.chomp
+		Singbot.new.sing
 
-		if guessed_artist == key_choice.to_s
-			puts "Dayum gurllll! You're an artist-guessing-master!!"
-		else
-			puts "Yikes, you suck. Awkward Turtle ..."
-		end
+
+		# if @answer == key_choice.to_s
+		# 	return true
+		# else
+		# 	return false
+		# end
 	end
 
 # test = Singbot.new
