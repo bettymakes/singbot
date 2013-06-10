@@ -13,26 +13,26 @@ class Singbot
 	end
 
 
-def sing
-	key_choice = @key_array.sample.to_sym   #randomly select a key
-	puts @songHash[key_choice]    #outputs the song lyrics corresponding to the key
-end
-
-def guess_artist
-	key_choice = @key_array.sample.to_sym 
-	puts @songHash[key_choice]
-	puts "guess artist now"
-	guessed_artist = gets.chomp
-
-	if guessed_artist == key_choice.to_s
-		puts "Dayum gurllll! You're an artist-guessing-master!!"
-	else
-		puts "Yikes, you suck. Awkward Turtle ..."
+	def sing
+		key_choice = @key_array.sample.to_sym   #randomly select a key
+		@songHash[key_choice]    #outputs the song lyrics corresponding to the key
 	end
-end
 
-test = Singbot.new
-test.sing
-test.guess_artist
+	def guess_artist
+		key_choice = @key_array.sample.to_sym 
+		puts @songHash[key_choice]
+		puts "guess artist now"
+		guessed_artist = gets.chomp
+
+		if guessed_artist == key_choice.to_s
+			puts "Dayum gurllll! You're an artist-guessing-master!!"
+		else
+			puts "Yikes, you suck. Awkward Turtle ..."
+		end
+	end
+
+# test = Singbot.new
+# test.sing
+# test.guess_artist
 
 end
