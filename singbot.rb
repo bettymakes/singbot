@@ -1,0 +1,3 @@
+class Singbot
+
+end
